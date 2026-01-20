@@ -33,13 +33,18 @@ struct SettingsView: View {
                             .foregroundStyle(.secondary)
                         Button(role: .destructive) {
                             Task { await sessionStore.signOut() }
+                            Task { @MainActor in Haptics.warning() }
                         } label: {
                             Text("Sign out")
                         }
+                        .buttonStyle(PressScaleButtonStyle())
                     }
                 }
                 .scrollContentBackground(.hidden)
             }
+        }
+        .onChange(of: temperatureUnitRawValue) { _ in
+            Task { @MainActor in Haptics.light() }
         }
     }
 
@@ -47,12 +52,14 @@ struct SettingsView: View {
         HStack {
             Button {
                 onMenuTap()
+                Task { @MainActor in Haptics.medium() }
             } label: {
                 Image(systemName: "line.3.horizontal")
                     .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(.black)
                     .frame(width: 44, height: 44)
             }
+            .buttonStyle(PressScaleButtonStyle())
 
             Spacer(minLength: 0)
 

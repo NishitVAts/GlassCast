@@ -36,7 +36,39 @@
 		753EB7322F1F2F3B003C50F3 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753EB7312F1F2F3B003C50F3 /* Date+Format.swift */; };
 		753EB7342F1F2F3B003C50F3 /* WeatherIconMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753EB7332F1F2F3B003C50F3 /* WeatherIconMapper.swift */; };
 		753EB7362F1F34C9003C50F3 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 753EB7352F1F34C9003C50F3 /* Supabase */; };
+		75C033222F1FE34100F680C8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C033212F1FE34100F680C8 /* WidgetKit.framework */; };
+		75C033242F1FE34100F680C8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C033232F1FE34100F680C8 /* SwiftUI.framework */; };
+		75C033272F1FE34100F680C8 /* GlassCastWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C033262F1FE34100F680C8 /* GlassCastWidgetBundle.swift */; };
+		75C033292F1FE34100F680C8 /* GlassCastWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C033282F1FE34100F680C8 /* GlassCastWidgetLiveActivity.swift */; };
+		75C0332B2F1FE34100F680C8 /* GlassCastWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C0332A2F1FE34100F680C8 /* GlassCastWidget.swift */; };
+		75C0332D2F1FE34100F680C8 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C0332C2F1FE34100F680C8 /* AppIntent.swift */; };
+		75C0332F2F1FE34A00F680C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C0332E2F1FE34A00F680C8 /* Assets.xcassets */; };
+		75C033332F1FE34A00F680C8 /* GlassCastWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 75C0331F2F1FE34000F680C8 /* GlassCastWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		75C033312F1FE34A00F680C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 753EB6E12F1F1B60003C50F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75C0331E2F1FE34000F680C8;
+			remoteInfo = GlassCastWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		75C033342F1FE34A00F680C8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				75C033332F1FE34A00F680C8 /* GlassCastWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		753EB6E92F1F1B60003C50F3 /* GlassCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +96,16 @@
 		753EB72F2F1F2F3B003C50F3 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		753EB7312F1F2F3B003C50F3 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		753EB7332F1F2F3B003C50F3 /* WeatherIconMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconMapper.swift; sourceTree = "<group>"; };
+		75C0331F2F1FE34000F680C8 /* GlassCastWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GlassCastWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		75C033212F1FE34100F680C8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		75C033232F1FE34100F680C8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		75C033262F1FE34100F680C8 /* GlassCastWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCastWidgetBundle.swift; sourceTree = "<group>"; };
+		75C033282F1FE34100F680C8 /* GlassCastWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCastWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		75C0332A2F1FE34100F680C8 /* GlassCastWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCastWidget.swift; sourceTree = "<group>"; };
+		75C0332C2F1FE34100F680C8 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		75C0332E2F1FE34A00F680C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		75C033302F1FE34A00F680C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75C033382F1FE3F900F680C8 /* GlassCast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlassCast.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +122,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75C0331C2F1FE34000F680C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75C033242F1FE34100F680C8 /* SwiftUI.framework in Frameworks */,
+				75C033222F1FE34100F680C8 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				753EB6EB2F1F1B60003C50F3 /* GlassCast */,
+				75C033252F1FE34100F680C8 /* GlassCastWidget */,
+				75C033202F1FE34100F680C8 /* Frameworks */,
 				753EB6EA2F1F1B60003C50F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				753EB6E92F1F1B60003C50F3 /* GlassCast.app */,
+				75C0331F2F1FE34000F680C8 /* GlassCastWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +156,7 @@
 		753EB6EB2F1F1B60003C50F3 /* GlassCast */ = {
 			isa = PBXGroup;
 			children = (
+				75C033382F1FE3F900F680C8 /* GlassCast.entitlements */,
 				753EB70A2F1FA636003C50F3 /* Info.plist */,
 				753EB6EC2F1F1B60003C50F3 /* GlassCastApp.swift */,
 				753EB6EE2F1F1B60003C50F3 /* ContentView.swift */,
@@ -138,6 +193,28 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		75C033202F1FE34100F680C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75C033212F1FE34100F680C8 /* WidgetKit.framework */,
+				75C033232F1FE34100F680C8 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75C033252F1FE34100F680C8 /* GlassCastWidget */ = {
+			isa = PBXGroup;
+			children = (
+				75C033262F1FE34100F680C8 /* GlassCastWidgetBundle.swift */,
+				75C033282F1FE34100F680C8 /* GlassCastWidgetLiveActivity.swift */,
+				75C0332A2F1FE34100F680C8 /* GlassCastWidget.swift */,
+				75C0332C2F1FE34100F680C8 /* AppIntent.swift */,
+				75C0332E2F1FE34A00F680C8 /* Assets.xcassets */,
+				75C033302F1FE34A00F680C8 /* Info.plist */,
+			);
+			path = GlassCastWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,10 +225,12 @@
 				753EB6E52F1F1B60003C50F3 /* Sources */,
 				753EB6E62F1F1B60003C50F3 /* Frameworks */,
 				753EB6E72F1F1B60003C50F3 /* Resources */,
+				75C033342F1FE34A00F680C8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				75C033322F1FE34A00F680C8 /* PBXTargetDependency */,
 			);
 			name = GlassCast;
 			packageProductDependencies = (
@@ -166,6 +245,23 @@
 			productReference = 753EB6E92F1F1B60003C50F3 /* GlassCast.app */;
 			productType = "com.apple.product-type.application";
 		};
+		75C0331E2F1FE34000F680C8 /* GlassCastWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75C033372F1FE34A00F680C8 /* Build configuration list for PBXNativeTarget "GlassCastWidgetExtension" */;
+			buildPhases = (
+				75C0331B2F1FE34000F680C8 /* Sources */,
+				75C0331C2F1FE34000F680C8 /* Frameworks */,
+				75C0331D2F1FE34000F680C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GlassCastWidgetExtension;
+			productName = GlassCastWidgetExtension;
+			productReference = 75C0331F2F1FE34000F680C8 /* GlassCastWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,6 +273,9 @@
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					753EB6E82F1F1B60003C50F3 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					75C0331E2F1FE34000F680C8 = {
 						CreatedOnToolsVersion = 15.2;
 					};
 				};
@@ -198,6 +297,7 @@
 			projectRoot = "";
 			targets = (
 				753EB6E82F1F1B60003C50F3 /* GlassCast */,
+				75C0331E2F1FE34000F680C8 /* GlassCastWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -209,6 +309,14 @@
 			files = (
 				753EB6F42F1F1B64003C50F3 /* Preview Assets.xcassets in Resources */,
 				753EB6F12F1F1B64003C50F3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75C0331D2F1FE34000F680C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75C0332F2F1FE34A00F680C8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +351,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75C0331B2F1FE34000F680C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75C033292F1FE34100F680C8 /* GlassCastWidgetLiveActivity.swift in Sources */,
+				75C0332D2F1FE34100F680C8 /* AppIntent.swift in Sources */,
+				75C033272F1FE34100F680C8 /* GlassCastWidgetBundle.swift in Sources */,
+				75C0332B2F1FE34100F680C8 /* GlassCastWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		75C033322F1FE34A00F680C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75C0331E2F1FE34000F680C8 /* GlassCastWidgetExtension */;
+			targetProxy = 75C033312F1FE34A00F680C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		753EB6F52F1F1B64003C50F3 /* Debug */ = {
@@ -368,8 +495,10 @@
 		753EB6F82F1F1B64003C50F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GlassCast/GlassCast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlassCast/Preview Content\"";
@@ -399,8 +528,10 @@
 		753EB6F92F1F1B64003C50F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GlassCast/GlassCast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlassCast/Preview Content\"";
@@ -427,6 +558,60 @@
 			};
 			name = Release;
 		};
+		75C033352F1FE34A00F680C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FNR749TRPD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlassCastWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GlassCastWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VatsNishit.GlassCast.GlassCastWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		75C033362F1FE34A00F680C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FNR749TRPD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlassCastWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GlassCastWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VatsNishit.GlassCast.GlassCastWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -444,6 +629,15 @@
 			buildConfigurations = (
 				753EB6F82F1F1B64003C50F3 /* Debug */,
 				753EB6F92F1F1B64003C50F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75C033372F1FE34A00F680C8 /* Build configuration list for PBXNativeTarget "GlassCastWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75C033352F1FE34A00F680C8 /* Debug */,
+				75C033362F1FE34A00F680C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

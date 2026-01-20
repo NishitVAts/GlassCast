@@ -9,69 +9,110 @@ struct HomeView: View {
 
     @AppStorage("temperature_unit") private var temperatureUnitRawValue: String = TemperatureUnit.celsius.rawValue
     @StateObject private var viewModel = HomeViewModel()
+    @State private var scrollOffset: CGFloat = 0
 
     var body: some View {
         let bg = WeatherIconMapper.themeBackground(for: viewModel.conditionText)
         let fg = WeatherIconMapper.themeForeground(for: viewModel.conditionText)
 
         ZStack {
-            bg.ignoresSafeArea()
+            bg
+                .ignoresSafeArea()
+                .animation(.easeInOut(duration: 0.35), value: viewModel.conditionText)
 
             ScrollView {
                 VStack(spacing: 18) {
                     topBar(foreground: fg)
                         .padding(.top, 8)
 
-                    VStack(spacing: 6) {
-                        Text(viewModel.selectedCity?.city_name ?? "Select a city")
-                            .font(.system(size: 30, weight: .semibold, design: .rounded))
+                    VStack(spacing: 12) {
+                        VStack(spacing: 6) {
+                            Text(viewModel.selectedCity?.city_name ?? "Select a city")
+                                .font(.system(size: 30, weight: .semibold, design: .rounded))
+                                .foregroundStyle(fg)
+
+                            if favoritesViewModel.favorites.isEmpty {
+                                Text("Add your first city from Search to see the forecast here.")
+                                    .font(.footnote.weight(.semibold))
+                                    .foregroundStyle(fg.opacity(0.75))
+                            } else if viewModel.selectedCity == nil {
+                                Text("Tap the location icon to pick a favorite.")
+                                    .font(.footnote.weight(.semibold))
+                                    .foregroundStyle(fg.opacity(0.75))
+                            }
+                        }
+
+                        Text(Date().longDayMonth())
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(Color.white)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .background(Color.black)
+                            .clipShape(Capsule())
+
+                        Text(viewModel.conditionText)
+                            .font(.system(size: 18, weight: .semibold))
                             .foregroundStyle(fg)
 
-                        if favoritesViewModel.favorites.isEmpty {
-                            Text("Add your first city from Search to see the forecast here.")
-                                .font(.footnote.weight(.semibold))
-                                .foregroundStyle(fg.opacity(0.75))
-                        } else if viewModel.selectedCity == nil {
-                            Text("Tap the location icon to pick a favorite.")
-                                .font(.footnote.weight(.semibold))
-                                .foregroundStyle(fg.opacity(0.75))
+                        Group {
+                            if viewModel.isLoading {
+                                SkeletonBlock(cornerRadius: 26)
+                                    .frame(height: 120)
+                                    .shimmer(true)
+                            } else {
+                                Text(viewModel.temperatureText)
+                                    .font(.system(size: 110, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(fg)
+                                    .lineLimit(1)
+                                    .contentTransition(.numericText())
+                                    .animation(.spring(response: 0.35, dampingFraction: 0.85), value: viewModel.temperatureText)
+                            }
                         }
                     }
-
-                    Text(Date().longDayMonth())
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(Color.white)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(Color.black)
-                        .clipShape(Capsule())
-
-                    Text(viewModel.conditionText)
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundStyle(fg)
-
-                    Text(viewModel.temperatureText)
-                        .font(.system(size: 110, weight: .semibold, design: .rounded))
-                        .foregroundStyle(fg)
-                        .lineLimit(1)
+                    .offset(y: scrollOffset * 0.12)
+                    .animation(.easeOut(duration: 0.18), value: scrollOffset)
 
                     dailySummary(foreground: fg)
 
-                    statsCard
+                    Group {
+                        if viewModel.isLoading {
+                            SkeletonBlock(cornerRadius: 18)
+                                .frame(height: 92)
+                                .shimmer(true)
+                        } else {
+                            statsCard
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
+                                .animation(.spring(response: 0.45, dampingFraction: 0.9), value: viewModel.windNumberText)
+                        }
+                    }
 
                     if !viewModel.forecast.isEmpty {
                         weeklyForecastHeader(foreground: fg)
                         weeklyForecastRow(foreground: fg)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                            .animation(.spring(response: 0.45, dampingFraction: 0.9), value: viewModel.forecast.count)
                     } else if viewModel.selectedCity != nil {
-                        Text("Pull to refresh to load the latest weekly forecast.")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(fg.opacity(0.75))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        if viewModel.isLoading {
+                            HStack(spacing: 12) {
+                                ForEach(0..<4, id: \.self) { _ in
+                                    SkeletonBlock(cornerRadius: 14)
+                                        .frame(width: 76, height: 86)
+                                }
+                            }
+                            .shimmer(true)
+                        } else {
+                            Text("Pull to refresh to load the latest weekly forecast.")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(fg.opacity(0.75))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 24)
             }
+            .coordinateSpace(name: "homeScroll")
+            .background(ScrollOffsetReader(offset: $scrollOffset))
             .refreshable {
                 await refreshWeather()
             }
@@ -114,12 +155,14 @@ struct HomeView: View {
         HStack {
             Button {
                 onMenuTap()
+                Task { @MainActor in Haptics.medium() }
             } label: {
                 Image(systemName: "line.3.horizontal")
                     .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(foreground)
                     .frame(width: 44, height: 44)
             }
+            .buttonStyle(PressScaleButtonStyle())
 
             Spacer(minLength: 0)
 
@@ -127,6 +170,7 @@ struct HomeView: View {
                 ForEach(favoritesViewModel.favorites) { city in
                     Button(city.city_name) {
                         selectedCityIdRawValue = city.id.uuidString
+                        Task { @MainActor in Haptics.light() }
                     }
                 }
             } label: {
@@ -150,13 +194,14 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 6)
+        .offset(y: scrollOffset * 0.08)
     }
 
     private var statsCard: some View {
         HStack(spacing: 12) {
-            statItem(icon: "wind", value: viewModel.windText, label: "Wind")
-            statItem(icon: "drop", value: viewModel.humidityText, label: "Humidity")
-            statItem(icon: "eye", value: viewModel.visibilityText, label: "Visibility")
+            statItem(icon: "wind", number: viewModel.windNumberText, unit: viewModel.windUnitText, label: "Wind")
+            statItem(icon: "drop", number: viewModel.humidityNumberText, unit: viewModel.humidityUnitText, label: "Humidity")
+            statItem(icon: "eye", number: viewModel.visibilityNumberText, unit: viewModel.visibilityUnitText, label: "Visibility")
         }
         .padding(.vertical, 16)
         .padding(.horizontal, 14)
@@ -165,14 +210,22 @@ struct HomeView: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
 
-    private func statItem(icon: String, value: String, label: String) -> some View {
+    private func statItem(icon: String, number: String, unit: String, label: String) -> some View {
         VStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundStyle(Color(red: 1.0, green: 0.88, blue: 0.16))
-            Text(value)
-                .font(.system(size: 16, weight: .semibold, design: .rounded))
-                .foregroundStyle(.white)
+
+            HStack(spacing: 4) {
+                Text(number)
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+                    .animation(.spring(response: 0.35, dampingFraction: 0.85), value: number)
+                Text(unit)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.8))
+            }
             Text(label)
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.7))
@@ -245,5 +298,31 @@ struct HomeView: View {
 
     private func refreshWeather() async {
         await viewModel.refresh(unit: unit)
+    }
+}
+
+private struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+private struct ScrollOffsetReader: View {
+    @Binding var offset: CGFloat
+
+    var body: some View {
+        GeometryReader { proxy in
+            Color.clear
+                .preference(
+                    key: ScrollOffsetPreferenceKey.self,
+                    value: proxy.frame(in: .named("homeScroll")).minY
+                )
+        }
+        .frame(height: 0)
+        .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+            offset = value
+        }
     }
 }

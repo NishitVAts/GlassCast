@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum WeatherIconMapper {
     static func sfSymbol(for openWeatherIcon: String) -> String {
@@ -42,5 +43,98 @@ enum WeatherIconMapper {
             return .white
         }
         return .black
+    }
+}
+
+struct ShimmerModifier: ViewModifier {
+    @State private var phase: CGFloat = -0.7
+
+    func body(content: Content) -> some View {
+        content
+            .overlay {
+                GeometryReader { proxy in
+                    let w = proxy.size.width
+                    let h = proxy.size.height
+
+                    LinearGradient(
+                        colors: [
+                            Color.white.opacity(0.0),
+                            Color.white.opacity(0.35),
+                            Color.white.opacity(0.0)
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .frame(width: max(160, w * 0.6), height: h)
+                    .rotationEffect(.degrees(18))
+                    .offset(x: w * phase)
+                    .blendMode(.plusLighter)
+                    .allowsHitTesting(false)
+                }
+            }
+            .mask(content)
+            .onAppear {
+                withAnimation(.linear(duration: 1.1).repeatForever(autoreverses: false)) {
+                    phase = 1.4
+                }
+            }
+    }
+}
+
+extension View {
+    func shimmer(_ active: Bool) -> some View {
+        if active {
+            return AnyView(self.modifier(ShimmerModifier()))
+        } else {
+            return AnyView(self)
+        }
+    }
+}
+
+struct SkeletonBlock: View {
+    var cornerRadius: CGFloat = 14
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+            .fill(Color.white.opacity(0.22))
+    }
+}
+
+@MainActor
+enum Haptics {
+    static func light() {
+        let g = UIImpactFeedbackGenerator(style: .light)
+        g.prepare()
+        g.impactOccurred()
+    }
+
+    static func medium() {
+        let g = UIImpactFeedbackGenerator(style: .medium)
+        g.prepare()
+        g.impactOccurred()
+    }
+
+    static func success() {
+        let g = UINotificationFeedbackGenerator()
+        g.prepare()
+        g.notificationOccurred(.success)
+    }
+
+    static func warning() {
+        let g = UINotificationFeedbackGenerator()
+        g.prepare()
+        g.notificationOccurred(.warning)
+    }
+}
+
+struct PressScaleButtonStyle: ButtonStyle {
+    var scale: CGFloat = 0.96
+    var opacity: Double = 0.92
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? scale : 1)
+            .opacity(configuration.isPressed ? opacity : 1)
+            .animation(.spring(response: 0.22, dampingFraction: 0.75), value: configuration.isPressed)
     }
 }

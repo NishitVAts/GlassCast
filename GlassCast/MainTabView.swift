@@ -97,6 +97,7 @@ struct MainTabView: View {
 
                 Button(role: .destructive) {
                     Task { await sessionStore.signOut() }
+                    Task { @MainActor in Haptics.warning() }
                 } label: {
                     HStack(spacing: 10) {
                         Image(systemName: "arrow.backward.square")
@@ -110,6 +111,7 @@ struct MainTabView: View {
                     .background(Color.white.opacity(0.12))
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 }
+                .buttonStyle(PressScaleButtonStyle())
                 .padding(.horizontal, 12)
                 .padding(.bottom, 18)
             }
@@ -122,6 +124,7 @@ struct MainTabView: View {
                 self.screen = screen
                 isMenuOpen = false
             }
+            Task { @MainActor in Haptics.light() }
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: systemImage)
@@ -136,11 +139,13 @@ struct MainTabView: View {
             .background(Color.white.opacity(self.screen == screen ? 0.18 : 0.08))
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
+        .buttonStyle(PressScaleButtonStyle())
     }
 
     private func toggleMenu() {
         withAnimation(.spring(response: 0.35, dampingFraction: 0.92)) {
             isMenuOpen.toggle()
         }
+        Task { @MainActor in Haptics.medium() }
     }
 }

@@ -9,6 +9,7 @@ struct CitySearchView: View {
 
     @StateObject private var searchViewModel = CitySearchViewModel()
     @FocusState private var isSearchFocused: Bool
+    @AppStorage("temperature_unit") private var temperatureUnitRawValue: String = TemperatureUnit.celsius.rawValue
 
     var body: some View {
         let bg = WeatherIconMapper.themeBackground(for: "clear")
@@ -39,8 +40,12 @@ struct CitySearchView: View {
                         }
 
                         favoritesSection
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                            .animation(.spring(response: 0.45, dampingFraction: 0.9), value: favoritesViewModel.favorites.count)
 
                         resultsSection
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                            .animation(.spring(response: 0.45, dampingFraction: 0.9), value: searchViewModel.results.count)
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 14)
@@ -58,12 +63,14 @@ struct CitySearchView: View {
         HStack {
             Button {
                 onMenuTap()
+                Task { @MainActor in Haptics.medium() }
             } label: {
                 Image(systemName: "line.3.horizontal")
                     .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(foreground)
                     .frame(width: 44, height: 44)
             }
+            .buttonStyle(PressScaleButtonStyle())
 
             Spacer(minLength: 0)
 
@@ -103,6 +110,7 @@ struct CitySearchView: View {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundStyle(.white.opacity(0.85))
                 }
+                .buttonStyle(PressScaleButtonStyle())
             }
         }
         .padding(.vertical, 12)
@@ -204,6 +212,7 @@ struct CitySearchView: View {
                 guard let userId = sessionStore.userId else { return }
                 guard let idx = favoritesViewModel.favorites.firstIndex(where: { $0.id == city.id }) else { return }
                 Task { await favoritesViewModel.delete(at: IndexSet(integer: idx), userId: userId) }
+                Task { @MainActor in Haptics.warning() }
             } label: {
                 Image(systemName: "trash")
                     .font(.system(size: 14, weight: .semibold))
@@ -211,6 +220,7 @@ struct CitySearchView: View {
                     .frame(width: 36, height: 36)
             }
             .buttonStyle(.plain)
+            .buttonStyle(PressScaleButtonStyle())
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 14)
@@ -218,7 +228,21 @@ struct CitySearchView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .onTapGesture {
             selectedCityIdRawValue = city.id.uuidString
+            Task {
+                await updateWidget(for: city)
+            }
+            Task { @MainActor in Haptics.light() }
         }
+    }
+
+    private var unit: TemperatureUnit {
+        TemperatureUnit(rawValue: temperatureUnitRawValue) ?? .celsius
+    }
+
+    private func updateWidget(for city: FavoriteCity) async {
+        let vm = HomeViewModel()
+        vm.selectedCity = city
+        await vm.refresh(unit: unit)
     }
 
     private func resultRow(result: GeocodingResult) -> some View {
@@ -227,6 +251,7 @@ struct CitySearchView: View {
             Task {
                 await favoritesViewModel.add(userId: userId, city: result)
             }
+            Task { @MainActor in Haptics.success() }
         } label: {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -251,5 +276,6 @@ struct CitySearchView: View {
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         }
         .buttonStyle(.plain)
+        .buttonStyle(PressScaleButtonStyle())
     }
 }
