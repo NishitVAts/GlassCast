@@ -22,9 +22,21 @@ struct HomeView: View {
                     topBar(foreground: fg)
                         .padding(.top, 8)
 
-                    Text(viewModel.selectedCity?.city_name ?? "—")
-                        .font(.system(size: 30, weight: .semibold, design: .rounded))
-                        .foregroundStyle(fg)
+                    VStack(spacing: 6) {
+                        Text(viewModel.selectedCity?.city_name ?? "Select a city")
+                            .font(.system(size: 30, weight: .semibold, design: .rounded))
+                            .foregroundStyle(fg)
+
+                        if favoritesViewModel.favorites.isEmpty {
+                            Text("Add your first city from Search to see the forecast here.")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(fg.opacity(0.75))
+                        } else if viewModel.selectedCity == nil {
+                            Text("Tap the location icon to pick a favorite.")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(fg.opacity(0.75))
+                        }
+                    }
 
                     Text(Date().longDayMonth())
                         .font(.system(size: 13, weight: .semibold))
@@ -39,7 +51,7 @@ struct HomeView: View {
                         .foregroundStyle(fg)
 
                     Text(viewModel.temperatureText)
-                        .font(.system(size: 130, weight: .semibold))
+                        .font(.system(size: 110, weight: .semibold, design: .rounded))
                         .foregroundStyle(fg)
                         .lineLimit(1)
 
@@ -47,9 +59,15 @@ struct HomeView: View {
 
                     statsCard
 
-                    weeklyForecastHeader(foreground: fg)
-
-                    weeklyForecastRow(foreground: fg)
+                    if !viewModel.forecast.isEmpty {
+                        weeklyForecastHeader(foreground: fg)
+                        weeklyForecastRow(foreground: fg)
+                    } else if viewModel.selectedCity != nil {
+                        Text("Pull to refresh to load the latest weekly forecast.")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(fg.opacity(0.75))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 24)

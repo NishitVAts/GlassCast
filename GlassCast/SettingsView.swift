@@ -16,6 +16,9 @@ struct SettingsView: View {
 
                 List {
                     Section {
+                        Text("Choose how temperatures are displayed across the app.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
                         Picker("Temperature", selection: $temperatureUnitRawValue) {
                             ForEach(TemperatureUnit.allCases) { unit in
                                 Text(unit.displayName).tag(unit.rawValue)
@@ -25,6 +28,9 @@ struct SettingsView: View {
                     }
 
                     Section {
+                        Text("Signing out keeps your saved cities in your account — just sign in again to restore them.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
                         Button(role: .destructive) {
                             Task { await sessionStore.signOut() }
                         } label: {

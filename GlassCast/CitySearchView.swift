@@ -24,6 +24,10 @@ struct CitySearchView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         searchField
 
+                        Text("Search for a city, then tap + to save it to your favorites.")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(.black.opacity(0.65))
+
                         if let message = favoritesViewModel.errorMessage {
                             Text(message)
                                 .font(.footnote)
@@ -114,9 +118,14 @@ struct CitySearchView: View {
                 .foregroundStyle(.black)
 
             if favoritesViewModel.favorites.isEmpty {
-                Text("No favorites yet")
-                    .font(.footnote)
-                    .foregroundStyle(.black.opacity(0.6))
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("No favorites yet")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.black)
+                    Text("Your saved cities show up here for quick switching on the Home screen.")
+                        .font(.footnote)
+                        .foregroundStyle(.black.opacity(0.6))
+                }
             } else {
                 VStack(spacing: 10) {
                     ForEach(favoritesViewModel.favorites) { city in
@@ -151,9 +160,13 @@ struct CitySearchView: View {
             }
 
             if searchViewModel.results.isEmpty {
-                if !searchViewModel.query.isEmpty {
-                    Text("No results")
-                        .font(.footnote)
+                if searchViewModel.query.isEmpty {
+                    Text("Tip: try \"New York\" or \"Mumbai\".")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.black.opacity(0.6))
+                } else {
+                    Text("No results — try a different spelling.")
+                        .font(.footnote.weight(.semibold))
                         .foregroundStyle(.black.opacity(0.6))
                 }
             } else {

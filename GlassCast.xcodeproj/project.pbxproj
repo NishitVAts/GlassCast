@@ -44,6 +44,7 @@
 		753EB6EE2F1F1B60003C50F3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		753EB6F02F1F1B64003C50F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		753EB6F32F1F1B64003C50F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		753EB70A2F1FA636003C50F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		753EB70F2F1F2C5C003C50F3 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		753EB7112F1F2C5C003C50F3 /* SupabaseClientProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseClientProvider.swift; sourceTree = "<group>"; };
 		753EB7132F1F2C5C003C50F3 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		753EB6EB2F1F1B60003C50F3 /* GlassCast */ = {
 			isa = PBXGroup;
 			children = (
+				753EB70A2F1FA636003C50F3 /* Info.plist */,
 				753EB6EC2F1F1B60003C50F3 /* GlassCastApp.swift */,
 				753EB6EE2F1F1B60003C50F3 /* ContentView.swift */,
 				753EB7152F1F2C5C003C50F3 /* RootView.swift */,
@@ -374,6 +376,7 @@
 				DEVELOPMENT_TEAM = FNR749TRPD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlassCast/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GlassCast needs your permission to check the weather in your city";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -404,6 +407,7 @@
 				DEVELOPMENT_TEAM = FNR749TRPD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlassCast/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GlassCast needs your permission to check the weather in your city";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
