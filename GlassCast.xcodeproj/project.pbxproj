@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		753EB6ED2F1F1B60003C50F3 /* GlassCastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753EB6EC2F1F1B60003C50F3 /* GlassCastApp.swift */; };
-		753EB6EF2F1F1B60003C50F3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753EB6EE2F1F1B60003C50F3 /* ContentView.swift */; };
 		753EB6F12F1F1B64003C50F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 753EB6F02F1F1B64003C50F3 /* Assets.xcassets */; };
 		753EB6F42F1F1B64003C50F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 753EB6F32F1F1B64003C50F3 /* Preview Assets.xcassets */; };
 		753EB6FC2F1F2719003C50F3 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 753EB6FB2F1F2719003C50F3 /* Auth */; };
@@ -73,7 +72,6 @@
 /* Begin PBXFileReference section */
 		753EB6E92F1F1B60003C50F3 /* GlassCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		753EB6EC2F1F1B60003C50F3 /* GlassCastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCastApp.swift; sourceTree = "<group>"; };
-		753EB6EE2F1F1B60003C50F3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		753EB6F02F1F1B64003C50F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		753EB6F32F1F1B64003C50F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		753EB70A2F1FA636003C50F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,27 +156,13 @@
 			children = (
 				75C033382F1FE3F900F680C8 /* GlassCast.entitlements */,
 				753EB70A2F1FA636003C50F3 /* Info.plist */,
-				753EB6EC2F1F1B60003C50F3 /* GlassCastApp.swift */,
-				753EB6EE2F1F1B60003C50F3 /* ContentView.swift */,
-				753EB7152F1F2C5C003C50F3 /* RootView.swift */,
-				753EB7172F1F2C5C003C50F3 /* AuthView.swift */,
-				753EB7192F1F2C5C003C50F3 /* MainTabView.swift */,
-				753EB71B2F1F2C5C003C50F3 /* HomeView.swift */,
-				753EB71D2F1F2C5C003C50F3 /* CitySearchView.swift */,
-				753EB71F2F1F2C5C003C50F3 /* SettingsView.swift */,
-				753EB7132F1F2C5C003C50F3 /* SessionStore.swift */,
-				753EB7112F1F2C5C003C50F3 /* SupabaseClientProvider.swift */,
-				753EB70F2F1F2C5C003C50F3 /* AppConfig.swift */,
-				753EB7212F1F2C5C003C50F3 /* OpenWeatherClient.swift */,
-				753EB7292F1F2F3B003C50F3 /* OpenWeatherClient+Weather.swift */,
-				753EB7272F1F2F3B003C50F3 /* OpenWeatherModels.swift */,
-				753EB7332F1F2F3B003C50F3 /* WeatherIconMapper.swift */,
-				753EB7312F1F2F3B003C50F3 /* Date+Format.swift */,
-				753EB72B2F1F2F3B003C50F3 /* HomeViewModel.swift */,
-				753EB72D2F1F2F3B003C50F3 /* CitySearchViewModel.swift */,
-				753EB72F2F1F2F3B003C50F3 /* FavoritesViewModel.swift */,
-				753EB7232F1F2F3B003C50F3 /* FavoriteCity.swift */,
-				753EB7252F1F2F3B003C50F3 /* FavoriteCitiesService.swift */,
+				75C0333F2F20C6DE00F680C8 /* Extra */,
+				75C0333E2F20C6A000F680C8 /* Main  */,
+				75C033392F20B3C200F680C8 /* Home */,
+				75C0333A2F20B3E000F680C8 /* Favourite Cities */,
+				75C0333B2F20B43800F680C8 /* Settings */,
+				75C0333C2F20B4BE00F680C8 /* SupaBase Essentials */,
+				75C0333D2F20B4EC00F680C8 /* OpenWeather Essentials */,
 				753EB6F02F1F1B64003C50F3 /* Assets.xcassets */,
 				753EB6F22F1F1B64003C50F3 /* Preview Content */,
 			);
@@ -213,6 +197,75 @@
 				75C033302F1FE34A00F680C8 /* Info.plist */,
 			);
 			path = GlassCastWidget;
+			sourceTree = "<group>";
+		};
+		75C033392F20B3C200F680C8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				753EB71B2F1F2C5C003C50F3 /* HomeView.swift */,
+				753EB72B2F1F2F3B003C50F3 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		75C0333A2F20B3E000F680C8 /* Favourite Cities */ = {
+			isa = PBXGroup;
+			children = (
+				753EB71D2F1F2C5C003C50F3 /* CitySearchView.swift */,
+				753EB72D2F1F2F3B003C50F3 /* CitySearchViewModel.swift */,
+				753EB72F2F1F2F3B003C50F3 /* FavoritesViewModel.swift */,
+				753EB7232F1F2F3B003C50F3 /* FavoriteCity.swift */,
+				753EB7252F1F2F3B003C50F3 /* FavoriteCitiesService.swift */,
+			);
+			path = "Favourite Cities";
+			sourceTree = "<group>";
+		};
+		75C0333B2F20B43800F680C8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				753EB71F2F1F2C5C003C50F3 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		75C0333C2F20B4BE00F680C8 /* SupaBase Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				753EB7132F1F2C5C003C50F3 /* SessionStore.swift */,
+				753EB7112F1F2C5C003C50F3 /* SupabaseClientProvider.swift */,
+				753EB70F2F1F2C5C003C50F3 /* AppConfig.swift */,
+			);
+			path = "SupaBase Essentials";
+			sourceTree = "<group>";
+		};
+		75C0333D2F20B4EC00F680C8 /* OpenWeather Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				753EB7212F1F2C5C003C50F3 /* OpenWeatherClient.swift */,
+				753EB7292F1F2F3B003C50F3 /* OpenWeatherClient+Weather.swift */,
+				753EB7272F1F2F3B003C50F3 /* OpenWeatherModels.swift */,
+			);
+			path = "OpenWeather Essentials";
+			sourceTree = "<group>";
+		};
+		75C0333E2F20C6A000F680C8 /* Main  */ = {
+			isa = PBXGroup;
+			children = (
+				753EB6EC2F1F1B60003C50F3 /* GlassCastApp.swift */,
+				753EB7152F1F2C5C003C50F3 /* RootView.swift */,
+				753EB7172F1F2C5C003C50F3 /* AuthView.swift */,
+				753EB7192F1F2C5C003C50F3 /* MainTabView.swift */,
+			);
+			path = "Main ";
+			sourceTree = "<group>";
+		};
+		75C0333F2F20C6DE00F680C8 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				753EB7332F1F2F3B003C50F3 /* WeatherIconMapper.swift */,
+				753EB7312F1F2F3B003C50F3 /* Date+Format.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,7 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				753EB6EF2F1F1B60003C50F3 /* ContentView.swift in Sources */,
 				753EB6ED2F1F1B60003C50F3 /* GlassCastApp.swift in Sources */,
 				753EB7162F1F2C5C003C50F3 /* RootView.swift in Sources */,
 				753EB7182F1F2C5C003C50F3 /* AuthView.swift in Sources */,

@@ -10,6 +10,7 @@ final class HomeViewModel: ObservableObject {
 
     @Published private(set) var temperatureText: String = "—"
     @Published private(set) var conditionText: String = "—"
+    @Published private(set) var iconCode: String = ""
     @Published private(set) var hiLoText: String = "—"
     @Published private(set) var forecast: [DailyForecast] = []
 
@@ -23,6 +24,16 @@ final class HomeViewModel: ObservableObject {
     @Published private(set) var humidityUnitText: String = "%"
     @Published private(set) var visibilityNumberText: String = "0"
     @Published private(set) var visibilityUnitText: String = ""
+    
+    // Additional weather data
+    @Published private(set) var feelsLikeText: String = "—"
+    @Published private(set) var pressureText: String = "—"
+    @Published private(set) var cloudinessText: String = "—"
+    @Published private(set) var windDirectionText: String = "—"
+    @Published private(set) var sunriseText: String = "—"
+    @Published private(set) var sunsetText: String = "—"
+    @Published private(set) var weatherDescription: String = "—"
+    @Published private(set) var lastUpdatedText: String = "—"
 
     private let client: OpenWeatherClient
 
@@ -51,7 +62,8 @@ final class HomeViewModel: ObservableObject {
 
             temperatureText = formatTemp(currentResponse.main.temp, unit: unit)
             conditionText = currentResponse.weather.first?.main ?? "—"
-            let conditionIcon = currentResponse.weather.first?.icon ?? ""
+            iconCode = currentResponse.weather.first?.icon ?? ""
+            let conditionIcon = iconCode
 
             let hi = formatTemp(currentResponse.main.temp_max, unit: unit)
             let lo = formatTemp(currentResponse.main.temp_min, unit: unit)
@@ -72,6 +84,16 @@ final class HomeViewModel: ObservableObject {
             let visibilityParts = formatVisibilityParts(currentResponse.visibility, unit: unit)
             visibilityNumberText = visibilityParts.number
             visibilityUnitText = visibilityParts.unit
+            
+            // Additional weather data
+            feelsLikeText = formatTemp(currentResponse.main.feels_like ?? currentResponse.main.temp, unit: unit)
+            pressureText = formatPressure(currentResponse.main.pressure)
+            cloudinessText = formatCloudiness(currentResponse.clouds?.all)
+            windDirectionText = formatWindDirection(currentResponse.wind?.deg)
+            sunriseText = formatTime(currentResponse.sys?.sunrise)
+            sunsetText = formatTime(currentResponse.sys?.sunset)
+            weatherDescription = currentResponse.weather.first?.description.capitalized ?? "—"
+            lastUpdatedText = formatTime(currentResponse.dt)
 
             forecast = buildDaily(from: forecastResponse)
 
@@ -176,6 +198,31 @@ final class HomeViewModel: ObservableObject {
             let miles = value / 1609.344
             return (String(format: "%.1f", miles), "mi")
         }
+    }
+    
+    private func formatPressure(_ value: Double?) -> String {
+        guard let value else { return "—" }
+        return "\(Int(value.rounded())) hPa"
+    }
+    
+    private func formatCloudiness(_ value: Int?) -> String {
+        guard let value else { return "—" }
+        return "\(value)%"
+    }
+    
+    private func formatWindDirection(_ degrees: Double?) -> String {
+        guard let degrees else { return "—" }
+        let directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
+        let index = Int((degrees + 22.5) / 45.0) % 8
+        return directions[index]
+    }
+    
+    private func formatTime(_ timestamp: TimeInterval?) -> String {
+        guard let timestamp else { return "—" }
+        let date = Date(timeIntervalSince1970: timestamp)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter.string(from: date)
     }
 
     private func buildDaily(from response: OpenWeatherForecastResponse) -> [DailyForecast] {

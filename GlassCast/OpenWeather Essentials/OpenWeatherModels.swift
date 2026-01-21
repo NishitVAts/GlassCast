@@ -10,13 +10,27 @@ struct OpenWeatherCurrentResponse: Codable {
 
     struct Main: Codable {
         let temp: Double
+        let feels_like: Double?
         let temp_min: Double
         let temp_max: Double
+        let pressure: Double?
         let humidity: Double?
     }
 
     struct Wind: Codable {
         let speed: Double?
+        let deg: Double?
+        let gust: Double?
+    }
+    
+    struct Clouds: Codable {
+        let all: Int?
+    }
+    
+    struct Sys: Codable {
+        let sunrise: TimeInterval?
+        let sunset: TimeInterval?
+        let country: String?
     }
 
     let name: String
@@ -24,6 +38,9 @@ struct OpenWeatherCurrentResponse: Codable {
     let main: Main
     let wind: Wind?
     let visibility: Double?
+    let clouds: Clouds?
+    let sys: Sys?
+    let dt: TimeInterval?
 }
 
 struct OpenWeatherForecastResponse: Codable {
