@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>OPENWEATHER_API_KEY</key>
-	<string>a41306eab08455f158c5342af482d4c6</string>
+	<string>add0b5b265442d5adb8a89af42bbf963</string>
 	<key>SUPABASE_KEY</key>
-	<string>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3cmZka2N3bHNqb2N4ZXd3dmJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2NDAzMjgsImV4cCI6MjA4NDIxNjMyOH0.bUvTuQ7CI4bOBKujSZviPI3vrvM0UBTxHVP5bST1lJY</string>
+	<string>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1emxzZ2xzZmx1a25qYmVtenBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzMzA1MjgsImV4cCI6MjA5MTkwNjUyOH0.v7yOEM8HnZfIw0dksKKhWY2XZWdELMm9IZaTCNaexV8</string>
 	<key>SUPABASE_URL</key>
-	<string>https://wwrfdkcwlsjocxewwvbq.supabase.co</string>
+	<string>https://quzlsglsfluknjbemzpl.supabase.co</string>
 </dict>
 </plist>
