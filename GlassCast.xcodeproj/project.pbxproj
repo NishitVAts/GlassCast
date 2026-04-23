@@ -35,6 +35,10 @@
 		753EB7322F1F2F3B003C50F3 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753EB7312F1F2F3B003C50F3 /* Date+Format.swift */; };
 		753EB7342F1F2F3B003C50F3 /* WeatherIconMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753EB7332F1F2F3B003C50F3 /* WeatherIconMapper.swift */; };
 		753EB7362F1F34C9003C50F3 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 753EB7352F1F34C9003C50F3 /* Supabase */; };
+		75A0ADFD2F9A74EB004E9D33 /* AIAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0ADF82F9A74EB004E9D33 /* AIAssistantView.swift */; };
+		75A0ADFE2F9A74EB004E9D33 /* OpenRouterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0ADFA2F9A74EB004E9D33 /* OpenRouterClient.swift */; };
+		75A0ADFF2F9A74EB004E9D33 /* OpenRouterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0ADFB2F9A74EB004E9D33 /* OpenRouterModels.swift */; };
+		75A0AE002F9A74EB004E9D33 /* AIAssistantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0ADF92F9A74EB004E9D33 /* AIAssistantViewModel.swift */; };
 		75C033222F1FE34100F680C8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C033212F1FE34100F680C8 /* WidgetKit.framework */; };
 		75C033242F1FE34100F680C8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C033232F1FE34100F680C8 /* SwiftUI.framework */; };
 		75C033272F1FE34100F680C8 /* GlassCastWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C033262F1FE34100F680C8 /* GlassCastWidgetBundle.swift */; };
@@ -94,6 +98,10 @@
 		753EB72F2F1F2F3B003C50F3 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		753EB7312F1F2F3B003C50F3 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		753EB7332F1F2F3B003C50F3 /* WeatherIconMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconMapper.swift; sourceTree = "<group>"; };
+		75A0ADF82F9A74EB004E9D33 /* AIAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantView.swift; sourceTree = "<group>"; };
+		75A0ADF92F9A74EB004E9D33 /* AIAssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantViewModel.swift; sourceTree = "<group>"; };
+		75A0ADFA2F9A74EB004E9D33 /* OpenRouterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRouterClient.swift; sourceTree = "<group>"; };
+		75A0ADFB2F9A74EB004E9D33 /* OpenRouterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRouterModels.swift; sourceTree = "<group>"; };
 		75C0331F2F1FE34000F680C8 /* GlassCastWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GlassCastWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C033212F1FE34100F680C8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		75C033232F1FE34100F680C8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -156,6 +164,7 @@
 			children = (
 				75C033382F1FE3F900F680C8 /* GlassCast.entitlements */,
 				753EB70A2F1FA636003C50F3 /* Info.plist */,
+				75A0ADFC2F9A74EB004E9D33 /* AI Assistant */,
 				75C0333F2F20C6DE00F680C8 /* Extra */,
 				75C0333E2F20C6A000F680C8 /* Main  */,
 				75C033392F20B3C200F680C8 /* Home */,
@@ -175,6 +184,17 @@
 				753EB6F32F1F1B64003C50F3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		75A0ADFC2F9A74EB004E9D33 /* AI Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				75A0ADF82F9A74EB004E9D33 /* AIAssistantView.swift */,
+				75A0ADF92F9A74EB004E9D33 /* AIAssistantViewModel.swift */,
+				75A0ADFA2F9A74EB004E9D33 /* OpenRouterClient.swift */,
+				75A0ADFB2F9A74EB004E9D33 /* OpenRouterModels.swift */,
+			);
+			path = "AI Assistant";
 			sourceTree = "<group>";
 		};
 		75C033202F1FE34100F680C8 /* Frameworks */ = {
@@ -398,6 +418,10 @@
 				753EB72C2F1F2F3B003C50F3 /* HomeViewModel.swift in Sources */,
 				753EB72E2F1F2F3B003C50F3 /* CitySearchViewModel.swift in Sources */,
 				753EB7302F1F2F3B003C50F3 /* FavoritesViewModel.swift in Sources */,
+				75A0ADFD2F9A74EB004E9D33 /* AIAssistantView.swift in Sources */,
+				75A0ADFE2F9A74EB004E9D33 /* OpenRouterClient.swift in Sources */,
+				75A0ADFF2F9A74EB004E9D33 /* OpenRouterModels.swift in Sources */,
+				75A0AE002F9A74EB004E9D33 /* AIAssistantViewModel.swift in Sources */,
 				753EB7242F1F2F3B003C50F3 /* FavoriteCity.swift in Sources */,
 				753EB7262F1F2F3B003C50F3 /* FavoriteCitiesService.swift in Sources */,
 			);

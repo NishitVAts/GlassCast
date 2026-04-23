@@ -11,6 +11,7 @@ struct AuthView: View {
     @State private var errorMessage: String?
 
     var body: some View {
+        
         ZStack {
             LinearGradient(
                 colors: [

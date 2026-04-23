@@ -8,7 +8,7 @@ struct HomeView: View {
     let onMenuTap: () -> Void
 
     @AppStorage("temperature_unit") private var temperatureUnitRawValue: String = TemperatureUnit.celsius.rawValue
-    @StateObject private var viewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewModel
     @State private var scrollOffset: CGFloat = 0
 
     var body: some View {

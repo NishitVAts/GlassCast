@@ -30,4 +30,14 @@ enum AppConfig {
         }
         preconditionFailure("Missing OPENWEATHER_API_KEY")
     }
+
+    static var openRouterAPIKey: String {
+        if let value = ProcessInfo.processInfo.environment["OPENROUTER_API_KEY"], !value.isEmpty {
+            return value
+        }
+        if let value = Bundle.main.object(forInfoDictionaryKey: "OPENROUTER_API_KEY") as? String, !value.isEmpty {
+            return value
+        }
+        return "" // Default to empty if not found, as it might be set later
+    }
 }

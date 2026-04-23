@@ -4,16 +4,19 @@ struct MainTabView: View {
     @ObservedObject var sessionStore: SessionStore
 
     @StateObject private var favoritesViewModel = FavoritesViewModel()
+    @StateObject private var homeViewModel = HomeViewModel()
     @AppStorage("selected_city_id") private var selectedCityIdRawValue: String = ""
 
     private enum Screen: CaseIterable {
         case home
+        case assistant
         case cities
         case settings
         
         var title: String {
             switch self {
             case .home: return "Home"
+            case .assistant: return "AI Assistant"
             case .cities: return "Cities"
             case .settings: return "Settings"
             }
@@ -22,6 +25,7 @@ struct MainTabView: View {
         var icon: String {
             switch self {
             case .home: return "house.fill"
+            case .assistant: return "sparkles"
             case .cities: return "map.fill"
             case .settings: return "gearshape.fill"
             }
@@ -64,7 +68,15 @@ struct MainTabView: View {
                 favoritesViewModel: favoritesViewModel,
                 sessionStore: sessionStore,
                 selectedCityIdRawValue: $selectedCityIdRawValue,
-                onMenuTap: toggleMenu
+                onMenuTap: toggleMenu,
+                viewModel: homeViewModel
+            )
+        case .assistant:
+            AIAssistantView(
+                onMenuTap: toggleMenu,
+                temperature: homeViewModel.temperatureText,
+                condition: homeViewModel.conditionText,
+                humidity: homeViewModel.humidityText
             )
         case .cities:
             CitySearchView(

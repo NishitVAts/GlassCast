@@ -8,5 +8,7 @@
 	<string>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1emxzZ2xzZmx1a25qYmVtenBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzMzA1MjgsImV4cCI6MjA5MTkwNjUyOH0.v7yOEM8HnZfIw0dksKKhWY2XZWdELMm9IZaTCNaexV8</string>
 	<key>SUPABASE_URL</key>
 	<string>https://quzlsglsfluknjbemzpl.supabase.co</string>
+	<key>OPENROUTER_API_KEY</key>
+	<string>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</string>
 </dict>
 </plist>
